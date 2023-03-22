@@ -51,3 +51,6 @@ Build:
 ```
 npm run build
 ```
+
+### Examples
+- Reducer example
