@@ -46,3 +46,8 @@ package.json
   ...
 }
 ```
+
+Build:
+```
+npm run build
+```
