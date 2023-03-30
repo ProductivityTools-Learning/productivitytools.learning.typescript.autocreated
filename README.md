@@ -53,4 +53,46 @@ npm run build
 ```
 
 ### Examples
-- Reducer example
+- Reducer example - reducer is similar to use state. Instead of setState method should be dispatch and method allow for a more complex state management
+
+```javascript
+type Action =
+  | {
+      type: 'initialize';
+      name: string;
+    }
+  | {
+      type: 'increment';
+    };
+
+function reducer(state: State, action: Action): State {
+  switch (action.type) {
+    case 'initialize':
+      return { name: action.name, score: 0, loading: false };
+    case 'increment':
+      return { ...state, score: state.score + 1 };
+    default:
+      return state;
+  }
+}
+
+ const [{ name, score, loading }, dispatch] = useReducer(reducer, {
+    name: undefined,
+    score: 0,
+    loading: true,
+  });
+
+() => dispatch({ type: 'increment' })
+```
+
+
+- Ref example - direct reference to given object. React core components like button expose ref property, using it we can directly call html methods 
+
+```javascript
+<input ref={inputRef} type="text"></input>
+
+function doSomething() {
+  console.log('All properties and method sof the input', inputRef.current);
+  inputRef.current?.focus();
+}
+```
