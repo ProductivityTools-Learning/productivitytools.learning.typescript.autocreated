@@ -96,3 +96,26 @@ function doSomething() {
   inputRef.current?.focus();
 }
 ```
+
+### useCallback vs useMemo
+
+```javascript
+const memoizedCallback = useCallback(foo, []);
+const memoizedResult = useMemo(foo, []);
+
+memoizedCallback;
+// ƒ foo() {
+//   return 'bar';
+// }
+memoizedResult; // 'bar'
+memoizedCallback(); // 'bar'
+memoizedResult(); // 🔴 TypeError
+```
+
+- Components are re rendered when parents are rerendered, but usually it is not a problem, as in virtual DOM nothing happen and no changes to the browser will be applied. If we do not want to rerender childs we can use useMemo
+
+```javascript
+export const ChildComponent = memo(() => {
+  return <span>A child component</span>;
+});
+```
